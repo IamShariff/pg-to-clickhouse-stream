@@ -1,0 +1,29 @@
+{
+  "name": "postgres-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "debezium",
+    "database.password": "debezium",
+    "database.dbname": "phoenix",
+    "database.server.name": "pg_cdc",
+    "slot.name": "debezium_slot",
+    "publication.name": "debezium_pub",
+    "plugin.name": "pgoutput",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.postgres",
+    "topic.prefix": "pg_cdc",
+    "table.include.list": "public.*",
+    "time.precision.mode": "connect",
+    "include.schema.changes": "true",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "transforms": "router",
+    "transforms.router.type": "io.debezium.transforms.ByLogicalTableRouter",
+    "transforms.router.topic.regex": "pg_cdc.public.(.*)",
+    "transforms.router.topic.replacement": "$1"
+  }
+}
