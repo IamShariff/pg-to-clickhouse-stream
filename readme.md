@@ -1,8 +1,8 @@
 # Docker Setup Guide
 
-## Step 1: Stop lifelenz-postgres Image
+## Step 1: Stop already running-postgres Image
 ```sh
-docker stop lifelenz-postgres
+docker stop lz-postgres
 ```
 
 ## Step 2: Make `init.sh` Executable
